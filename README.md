@@ -82,3 +82,42 @@ Once you've mapped the path you can navigate to the area that your code is store
 
 Editing inside the Docker container involves having the code on your remote machine and the Docker container running with a mapped file system volume. 
 
+Through SSHFS open your code folder on the remote machine with VS Code. 
+
+Then in the code terminal window SSH (normally!) in the remote machine so you have the files open in code and a terminal open in the same location. 
+
+![sshfscoderemote](https://user-images.githubusercontent.com/5225782/53216754-bd036500-36a9-11e9-820a-b825b25046e2.gif)
+
+### Run the container
+
+Clone this repo on to the PI in a folder path that makes sense.
+
+```
+git clone https://github.com/jakkaj/SSHFS_CheatSheet.git
+```
+
+This repo has a Python sample under `src\python\run.py` that shows the version of OpenCV that is installed. This is a great example because normally getting OpenCV to run on a PI is hard - this will work using just one bash script to run a container!
+
+In the ssh terminal navigate to the dir where the code was checked out and run the `startdocker.sh` script. 
+
+![sshfscoderemoteincontinare](https://user-images.githubusercontent.com/5225782/53218772-95b09600-36b1-11e9-9595-0f8fb1d4aed0.gif)
+
+```
+./startdocker.sh
+# in the container
+cd src/python
+python3 run.py
+```
+
+This will launch the container, mapping through the ./src path to /src in the container. 
+
+The script is running the following command 
+
+```
+docker run -it --rm -v "$(pwd)/src:/src" sgtwilko/rpi-raspbian-opencv
+```
+
+
+This code is being mapped through from the raspberry PI folder path... that you're using ssh to edit. So you can edit this file in VS Code and then run it again via SSH and it will show the edits without having to rebuild the container, and you can do it all from the comfort of your development machine!
+
+The result when running the Python script is showing the OpenCV version that was detected. Too easy!
