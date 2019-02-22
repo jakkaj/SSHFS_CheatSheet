@@ -37,7 +37,7 @@ I'll be remote editing to a Rapberry PI.
 
 Docker isn't needed, it's just extra cool to have that extra step of editing files directly in to the container (well sort of, they are actually mapped in by Docker). 
 
-## SSH from Windows
+## SSHFS from Windows
 
 In Windows once the FUSE driver is installed its as simple as opening Explorer and typing in a drive path in the usual `\\` style notation. 
 
@@ -47,7 +47,7 @@ In Windows once the FUSE driver is installed its as simple as opening Explorer a
 
 ![sshfswindows](https://user-images.githubusercontent.com/5225782/53215597-7dd31500-36a5-11e9-9b45-ae77143de95d.gif)
 
-## SSH on Mac and Linux
+## SSHFS on Mac and Linux
 
 Use the `sshfs` to mount the remote path in to a folder. Using my Raspberry PI with a static ip of `10.0.0.223`. I like to use ~/mnt rather than /mnt as this code editing path feels more like a user thing than a system wide thing. 
 
